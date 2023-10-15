@@ -10,21 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+#define FT_PRINTF_H
 
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdint.h>
+#include <stdio.h>
 
-int		printf_d(int n);
-int		printf_p(unsigned int num);
-int		printf_s(char *s);
-int		printf_u(int n);
-int		printf_x(int num);
-int		printf_capital_x(int num);
-char	*ft_itoa(int n);
-int		ft_printf(const char *s, ...);
-int		digit_count(unsigned int n);
+size_t	ft_strlen(const char *s);
+int printf_d(int n);
+int printf_p(void *);
+int printf_s(char *s);
+int printf_u(unsigned int n);
+int printf_x(unsigned int num);
+int printf_capital_x(unsigned int num);
+char *ft_itoa(int n);
+int ft_printf(const char *s, ...);
+int digit_count(int n);
+char	*hex(unsigned int num, char *hex);
 
 #endif

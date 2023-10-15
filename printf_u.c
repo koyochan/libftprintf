@@ -10,23 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
+int digit_unsigned_int(unsigned int n)
+{
+	int len = 1;
+	if (n == 0)
+		return (len);
+	while(n /= 10)
+		len++;
+	return (len);
+}
 
-int	printf_u(int n)
+char *ft_uinttoa(unsigned int n)
+{
+	int				len;
+	char			*res;
+
+	len = digit_unsigned_int(n);
+	res = (char *)malloc(sizeof(char) * len + 1);
+	if (res == NULL)
+		return (NULL);
+	res[len] = '\0';
+	while (len--)
+	{
+		res[len] = n % 10 + '0';
+		n /= 10;
+	}
+	return (res);
+}
+
+int	printf_u(unsigned int n)
 {
 	char	*num;
-	int		len;
 	int		count;
 
 	count = 0;
-	len = digit_count(n);
-	num = ft_itoa((unsigned int)n);
-	num[len] = '\0';
-	while (*num)
-	{
-		count += write(1, &num, 1);
-		num++;
-	}
+	num = ft_uinttoa(n);
+	count = write(1, num, ft_strlen(num));
 	free(num);
 	return (count);
 }

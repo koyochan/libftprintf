@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-char	*hex(int num, char *hex)
+char	*hex(unsigned int num, char *hex)
 {
 	char			*result;
 	int				i;
@@ -21,27 +21,21 @@ char	*hex(int num, char *hex)
 
 	tmp = num;
 	count = 1;
-	while (tmp / 16)
-	{
-		tmp /= 16;
+	while (tmp /= 16)
 		count++;
-	}
-	if (num < 0)
-		count++;
-	i = 0;
-	result = malloc(sizeof(char) * (count + 1));
-	while (count >= 0)
+	result = malloc((count + 1));
+	if(!result)
+		return (NULL);
+	result[count] = '\0';
+	while (count-- > 0)
 	{
-		result[i] = hex[num % 16];
+		result[count] = hex[num % 16];
 		num /= 16;
-		i++;
-		count--;
 	}
-	result[i] = '\0';
 	return (result);
 }
 
-int	printf_x(int num)
+int	printf_x(unsigned int num)
 {
 	char	*hexd;
 	char	*result;
@@ -50,17 +44,14 @@ int	printf_x(int num)
 	count = 0;
 	hexd = "0123456789abcdef";
 	result = hex(num, hexd);
-	while (*result)
-	{
-		count += write(1, &result, 1);
-		result++;
-	}
+	if(!result)
+		return (-1);
+	count = write(1, result, ft_strlen(result));
 	free(result);
-	free(hex);
 	return (count);
 }
 
-int	printf_capital_x(int num)
+int	printf_capital_x(unsigned int num)
 {
 	char	*hexd;
 	char	*result;
@@ -69,12 +60,9 @@ int	printf_capital_x(int num)
 	count = 0;
 	hexd = "0123456789ABCDEF";
 	result = hex(num, hexd);
-	while (*result)
-	{
-		count += write(1, &result, 1);
-		result++;
-	}
+	if (!result)
+		return (-1);
+	count = write(1, result, ft_strlen(result));
 	free(result);
-	free(hex);
 	return (count);
 }

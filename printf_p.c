@@ -10,31 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	write_p(char *result)
 {
 	int	count;
+	char *orig_result = result;
 
 	count = 0;
-	while (*result)
-	{
-		count += write(1, &result, 1);
-		result++;
-	}
-	free(result);
+	count = write(1, "0x", 2);
+	count += write(1, result, ft_strlen(result));
+	free(orig_result);
 	return (count);
 }
 
-int	printf_p(unsigned int num)
+int	printf_p(void *p)
 {
 	char	*result;
-	int		i;
 	int		count;
 	char	*hex;
-	int		tmp;
+	uintptr_t	tmp;
+	uintptr_t num;
 
-	hex = "0123456789ABCDEF";
+	num = (uintptr_t)p;
+	hex = "0123456789abcdef";
 	tmp = num;
 	count = 1;
 	while (tmp / 16)
@@ -42,15 +41,14 @@ int	printf_p(unsigned int num)
 		tmp /= 16;
 		count++;
 	}
-	i = 0;
 	result = (char *)malloc(sizeof(char) * (count + 1));
-	while (count >= 0)
+	if (!result)
+		return (-1);
+	result[count] = '\0';
+	while (count-- > 0)
 	{
-		result[i] = hex[num % 16];
+		result[count] = hex[num % 16];
 		num /= 16;
-		i++;
-		count--;
 	}
-	result[i] = '\0';
 	return (write_p(result));
 }

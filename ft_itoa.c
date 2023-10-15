@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int	digit_count(int n)
 {
@@ -54,6 +54,16 @@ char	*ft_itoa(int n)
 	if (n < 0)
 		res[0] = '-';
 	return (res);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	count;
+
+	count = 0;
+	while (*s++ != 0)
+		count++;
+	return (count);
 }
 
 /* int	main(void)

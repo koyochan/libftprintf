@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	printf_d(int n)
 {
@@ -22,9 +21,9 @@ int	printf_d(int n)
 	count = 0;
 	len = digit_count(n);
 	num = ft_itoa(n);
-	num[len] = '\0';
-	while (*num++)
-		count += write(1, &num, 1);
+	if(!num)
+		return (-1);
+	count = write(1, num, ft_strlen(num));
 	free(num);
 	return (count);
 }

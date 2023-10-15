@@ -10,15 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 
 int	ft_printf(const char *s, ...)
 {
 	va_list	args;
 	int		count;
+	int temp;
 
 	va_start(args, s);
+	temp = 0;
 	count = 0;
 	while (*s)
 	{
@@ -26,24 +28,29 @@ int	ft_printf(const char *s, ...)
 		{
 			s++;
 			if (*s == 'c')
-				count += write(1, &(char){va_arg(args, int)}, 1);
+				temp = write(1, &(char){va_arg(args, int)}, 1);
 			else if (*s == 'd')
-				count += printf_d(va_arg(args, int));
+				temp = printf_d(va_arg(args, int));
 			else if (*s == 'p')
-				count += printf_p(va_arg(args, unsigned int));
+				temp = printf_p(va_arg(args, void *));
 			else if (*s == 's')
-				count += printf_s(va_arg(args, char *));
+				temp = printf_s(va_arg(args, char *));
 			else if (*s == 'u')
-				count += printf_u(va_arg(args, unsigned int));
+				temp = printf_u(va_arg(args, unsigned int));
 			else if (*s == 'x')
-				count += printf_x(va_arg(args, int));
+				temp = printf_x(va_arg(args, unsigned int));
 			else if (*s == 'X')
-				count += printf_capital_x(va_arg(args, int));
+				temp = printf_capital_x(va_arg(args, unsigned int));
 			else if (*s == '%')
-				count += write(1, "%%", 1);
+				temp = write(1, "%%", 1);
 		}
 		else
-			count += write(1, s, 1);
+			temp = write(1, s, 1);
+		if (temp >= 0)
+			count += temp;
+		else if(temp == -1)
+			return (-1);
+		temp = 0;
 		if (*s)
 			s++;
 	}
@@ -55,12 +62,14 @@ int	ft_printf(const char *s, ...)
 
 int	main(void)
 {
-	char *null_str = NULL;
-	char *s = "wadada";
+	int x = 231315414;
+	void *p;
+	p = &x;
 	int count;
-	count = printf("this is a %s", null_str);
-	printf("%d", count);
 	count = 0;
-	count = ft_printf("this is a %s", null_str);
-	printf("%d", count);
+	count = printf("this is a %X\n", x);
+	printf("%d\n", count);
+	count = 0;
+	count = ft_printf("this is a %X\n", x);
+	printf("%d\n", count);
 }

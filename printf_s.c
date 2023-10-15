@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int	printf_s(char *s)
 {
@@ -22,7 +22,6 @@ int	printf_s(char *s)
 		write(1, "(null)", 6);
 		return (6);
 	}
-	while (*s)
-		count += write(1, s++, 1);
+	count += write(1, s, ft_strlen(s));
 	return (count);
 }
