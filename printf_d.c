@@ -15,11 +15,9 @@
 int	printf_d(int n)
 {
 	char	*num;
-	int		len;
 	int		count;
 
 	count = 0;
-	len = digit_count(n);
 	num = ft_itoa(n);
 	if(!num)
 		return (-1);

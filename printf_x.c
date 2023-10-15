@@ -15,7 +15,6 @@
 char	*hex(unsigned int num, char *hex)
 {
 	char			*result;
-	int				i;
 	int				count;
 	unsigned int	tmp;
 

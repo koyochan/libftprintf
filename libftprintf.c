@@ -29,7 +29,7 @@ int	ft_printf(const char *s, ...)
 			s++;
 			if (*s == 'c')
 				temp = write(1, &(char){va_arg(args, int)}, 1);
-			else if (*s == 'd')
+			else if (*s == 'd' || *s == 'i')
 				temp = printf_d(va_arg(args, int));
 			else if (*s == 'p')
 				temp = printf_p(va_arg(args, void *));
@@ -58,18 +58,15 @@ int	ft_printf(const char *s, ...)
 	return (count);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 
 int	main(void)
 {
-	int x = 231315414;
-	void *p;
-	p = &x;
 	int count;
 	count = 0;
-	count = printf("this is a %X\n", x);
+	count = printf("this is a %p\n", 0);
 	printf("%d\n", count);
 	count = 0;
-	count = ft_printf("this is a %X\n", x);
+	count = ft_printf("this is a %p\n", 0);
 	printf("%d\n", count);
-}
+} */
