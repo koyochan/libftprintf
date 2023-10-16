@@ -6,25 +6,31 @@
 /*   By: kotkobay <kotkobay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:57:56 by kotkobay          #+#    #+#             */
-/*   Updated: 2023/10/06 19:27:38 by kotkobay         ###   ########.fr       */
+/*   Updated: 2023/10/16 13:29:37 by kotkobay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-int digit_unsigned_int(unsigned int n)
+
+int	digit_unsigned_int(unsigned int n)
 {
-	int len = 1;
+	int	len;
+
+	len = 0;
 	if (n == 0)
-		return (len);
-	while(n /= 10)
+		return (1);
+	while (n)
+	{
+		n /= 10;
 		len++;
+	}
 	return (len);
 }
 
-char *ft_uinttoa(unsigned int n)
+char	*ft_uinttoa(unsigned int n)
 {
-	int				len;
-	char			*res;
+	int		len;
+	char	*res;
 
 	len = digit_unsigned_int(n);
 	res = (char *)malloc(sizeof(char) * len + 1);

@@ -6,7 +6,7 @@
 /*   By: kotkobay <kotkobay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:37:56 by kotkobay          #+#    #+#             */
-/*   Updated: 2023/10/06 19:29:07 by kotkobay         ###   ########.fr       */
+/*   Updated: 2023/10/16 13:05:05 by kotkobay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	printf_d(int n)
 
 	count = 0;
 	num = ft_itoa(n);
-	if(!num)
+	if (!num)
 		return (-1);
 	count = write(1, num, ft_strlen(num));
 	free(num);

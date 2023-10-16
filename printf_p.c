@@ -6,7 +6,7 @@
 /*   By: kotkobay <kotkobay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:49:28 by kotkobay          #+#    #+#             */
-/*   Updated: 2023/10/06 19:26:49 by kotkobay         ###   ########.fr       */
+/*   Updated: 2023/10/16 13:05:09 by kotkobay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	write_p(char *result)
 {
-	int	count;
-	char *orig_result = result;
+	int		count;
+	char	*orig_result;
 
+	orig_result = result;
 	count = 0;
 	count = write(1, "0x", 2);
 	count += write(1, result, ft_strlen(result));
@@ -26,11 +27,11 @@ int	write_p(char *result)
 
 int	printf_p(void *p)
 {
-	char	*result;
-	int		count;
-	char	*hex;
+	char		*result;
+	int			count;
+	char		*hex;
 	uintptr_t	tmp;
-	uintptr_t num;
+	uintptr_t	num;
 
 	num = (uintptr_t)p;
 	hex = "0123456789abcdef";
