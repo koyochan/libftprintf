@@ -1,4 +1,4 @@
-NAME = get_next_line.a
+NAME = libftprintf.a
 
 CC = cc
 CFLAG = -Wall -Wextra -Werror
