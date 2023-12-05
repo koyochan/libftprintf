@@ -1,8 +1,8 @@
-NAME = libftprintf.a
+NAME = ft_printf.a
 
 CC = cc
 CFLAG = -Wall -Wextra -Werror
-SRC = ft_itoa.c libftprintf.c printf_d.c printf_p.c printf_s.c printf_u.c printf_x.c
+SRC = ft_itoa.c ft_printf.c printf_d.c printf_p.c printf_s.c printf_u.c printf_x.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
